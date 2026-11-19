@@ -8,11 +8,9 @@ export const PENDING = "Por confirmar";
 export const PROPOSED_POLICY = "Política propuesta, por confirmar";
 
 export const brand = {
-  name: "Segunda Tecla",
-  /** Wordmark text, set in lower case by the Wordmark component */
-  wordmark: "segunda tecla",
-  /** Character on the little keycap next to the wordmark */
-  keycap: "2",
+  name: "IP Outlet Store",
+  /** Wordmark text shown next to the logo mark (src/assets/logo-mark.png) */
+  wordmark: "IP Outlet Store",
   tagline: "Laptops reacondicionadas, revisadas una por una.",
   description:
     "Laptops reacondicionadas en Guatemala con su estado real a la vista: grado cosmético, salud de batería y qué incluye cada una. Precios en quetzales.",
@@ -24,19 +22,19 @@ export const brand = {
    * so changing a value here recolours the whole site.
    */
   colors: {
-    paper: "oklch(97.5% 0.004 240)",
+    paper: "oklch(97.5% 0 0)",
     surface: "oklch(100% 0 0)",
-    sunken: "oklch(94% 0.006 240)",
-    ink: "oklch(22% 0.015 250)",
-    inkSoft: "oklch(45% 0.015 250)",
-    line: "oklch(88% 0.008 240)",
-    accent: "oklch(50% 0.1 178)",
-    accentStrong: "oklch(40% 0.09 178)",
-    accentWash: "oklch(94% 0.035 178)",
-    signal: "oklch(86% 0.16 92)",
-    signalHover: "oklch(80% 0.16 88)",
+    sunken: "oklch(94% 0 0)",
+    ink: "oklch(22% 0 0)",
+    inkSoft: "oklch(45% 0 0)",
+    line: "oklch(88% 0 0)",
+    accent: "oklch(54% 0.16 48)",
+    accentStrong: "oklch(45% 0.13 45)",
+    accentWash: "oklch(95% 0.03 60)",
+    signal: "oklch(70% 0.18 52)",
+    signalHover: "oklch(65% 0.18 50)",
     alert: "oklch(52% 0.19 27)",
-    focus: "oklch(50% 0.1 178)",
+    focus: "oklch(54% 0.16 48)",
   },
 
   /** Contact details: all pending until the owner confirms them */

@@ -1,6 +1,6 @@
 /* Hallmark · shape: Catalog-first store · genre: editorial · theme: custom · job: buy · idea: "la ficha de inspección es el producto" · vibe: "taller ordenado, claro, confiable, con energía"
- * paper: oklch(97.5% 0.004 240) · accent: oklch(50% 0.1 178) · display: Archivo (wdth 125) · body: Onest · hero: split, head left, inspection card right · nav: edge-aligned wordmark + 3 links · footer: mast, wordmark over links · imagery: own SVG laptop illustrations labelled, admin photos replace them · signature: the inspection card (huge grade letter, battery bar, GTQ price)
- * axes: light/grotesk-heavy/chromatic-teal · posture: product-led · contrast: pass · fold: pass · v2.0.0 */
+ * paper: oklch(97.5% 0 0) · accent: oklch(54% 0.16 48) (IP Outlet Store orange) · display: Archivo (wdth 125) · body: Onest · hero: split, head left, inspection card right · nav: edge-aligned logo mark + wordmark + 3 links · footer: mast, wordmark over links · imagery: own SVG laptop illustrations labelled, admin photos replace them · signature: the inspection card (huge grade letter, battery bar, GTQ price)
+ * axes: light/grotesk-heavy/chromatic-orange · posture: product-led · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R3 V4 · weakest: R, the illustration set repeats four silhouettes; real photos fix it */
 /* answered: palette comes from src/config/brand.ts through --brand-* on <html>; this file maps them to tokens only */
 /* waive 24b: control paddings (10/14/22px) are tuned to 40-44px touch targets and optical centring of text, not layout spacing */

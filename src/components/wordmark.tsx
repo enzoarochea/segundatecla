@@ -1,17 +1,14 @@
+import Image from "next/image";
 import { brand } from "@/config/brand";
+import mark from "@/assets/logo-mark.png";
 
-/** Text wordmark plus a small keycap. Name and keycap come from config/brand.ts. */
+/** Logo mark (IOS) plus the store name. Name comes from config/brand.ts. */
 export function Wordmark({ size = "md" }: { size?: "md" | "lg" }) {
   const lg = size === "lg";
   return (
     <span className="inline-flex items-center gap-2">
-      <span
-        aria-hidden="true"
-        className={`wide grid place-items-center rounded-[7px] border border-ink bg-surface font-bold text-ink shadow-[0_2px_0_var(--color-ink)] ${lg ? "size-10 text-xl" : "size-7 text-sm"}`}
-      >
-        {brand.keycap}
-      </span>
-      <span className={`wide font-bold text-ink ${lg ? "text-3xl sm:text-4xl" : "text-lg"}`}>
+      <Image src={mark} alt="" className={`w-auto ${lg ? "h-12" : "h-8"}`} priority={!lg} />
+      <span className={`wide font-bold uppercase text-accent-strong ${lg ? "text-2xl sm:text-3xl" : "sr-only sm:not-sr-only sm:text-base"}`}>
         {brand.wordmark}
       </span>
     </span>
