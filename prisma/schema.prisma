@@ -1,0 +1,76 @@
+// SQLite locally. To move to Postgres: change provider to "postgresql",
+// swap the adapter in src/lib/db.ts, and run `prisma migrate dev`.
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Laptop {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  brand         String
+  model         String
+  cpu           String
+  ramGb         Int
+  storageGb     Int
+  storageType   String        @default("SSD")
+  screenIn      Float
+  gpu           String?
+  os            String
+  year          Int?
+  priceGtq      Int
+  /// "A" | "B" | "C" (validated in src/lib/validation.ts)
+  grade         String
+  /// Percent of original capacity, 0-100
+  batteryHealth Int
+  /// Comma-wrapped list: ",estudio,oficina,". shortcut: String[] once on Postgres.
+  uses          String
+  /// One item per line
+  includes      String
+  cosmeticNotes String        @default("")
+  description   String        @default("")
+  stock         Int           @default(1)
+  hidden        Boolean       @default(false)
+  isDemo        Boolean       @default(false)
+  /// Placeholder illustration: ultrabook | clasica | convertible | gamer
+  artVariant    String        @default("clasica")
+  images        LaptopImage[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([hidden, priceGtq])
+}
+
+model LaptopImage {
+  id       String @id @default(cuid())
+  laptopId String
+  laptop   Laptop @relation(fields: [laptopId], references: [id], onDelete: Cascade)
+  url      String
+  alt      String @default("")
+  position Int    @default(0)
+
+  @@index([laptopId, position])
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  sessions     Session[]
+  createdAt    DateTime  @default(now())
+}
+
+model Session {
+  /// SHA-256 of the cookie token; the raw token is never stored
+  id        String    @id
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}

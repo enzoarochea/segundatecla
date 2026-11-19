@@ -1,0 +1,29 @@
+[
+ {
+  "shape": "catalog-first-store",
+  "theme": "custom",
+  "axes": "light/grotesk-heavy/chromatic-teal",
+  "hero": "split, head left, inspection card right",
+  "nav": "edge-aligned wordmark + 3 links",
+  "footer": "mast, wordmark over links",
+  "imagery": "own SVG laptop illustrations, labelled; admin photos replace them",
+  "photos": [],
+  "entry": "css reveal (animation-timeline: view)",
+  "fingerprint": "teal accent, Archivo wide display, Onest body, giant grade letter",
+  "sections": [
+   "hero",
+   "usos",
+   "recien-llegadas",
+   "grados",
+   "politicas",
+   "footer"
+  ],
+  "signature": "inspection card: huge grade letter, battery bar, GTQ price",
+  "waived": [
+   "24b"
+  ],
+  "prompt": "ecommerce de laptops refurbished (Guatemala)",
+  "date": "2026-11-19",
+  "mode": "build"
+ }
+]
