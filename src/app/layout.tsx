@@ -5,6 +5,7 @@ import { brand, PENDING, PROPOSED_POLICY } from "@/config/brand";
 import { bodyFont, displayFont } from "@/config/fonts";
 import { Links, NavLinks } from "@/components/nav-links";
 import { Wordmark } from "@/components/wordmark";
+import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,9 @@ const brandVars = {
   "--brand-focus": c.focus,
 } as CSSProperties;
 
+// Runs before paint so the saved or system theme shows without a flash.
+const themeScript = `try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
+
 const contactRows = [
   ["WhatsApp", brand.contact.whatsapp],
   ["Correo", brand.contact.email],
@@ -41,7 +45,10 @@ const contactRows = [
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang={brand.locale} className={`${displayFont.variable} ${bodyFont.variable}`} style={brandVars}>
+    <html lang={brand.locale} className={`${displayFont.variable} ${bodyFont.variable}`} style={brandVars} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a href="#contenido" className="skip">
           Saltar al contenido
@@ -54,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Suspense fallback={<Links />}>
               <NavLinks />
             </Suspense>
+            <ThemeToggle />
           </nav>
         </header>
 
