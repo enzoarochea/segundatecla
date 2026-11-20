@@ -17,5 +17,5 @@ export function BrandSpark() {
     return () => mo.disconnect();
   }, []);
 
-  return <ElectricLogo src={mark.src} theme={theme} color="#ffe2c4" glowColor="#e07a2e" scale={0.75} />;
+  return <ElectricLogo src={mark.src} theme={theme} color="#ffe2c4" glowColor="#e07a2e" scale={1 / 3} glow={0.5} />;
 }

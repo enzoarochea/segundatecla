@@ -87,7 +87,8 @@ const readCoverage = (data, w, h) => {
   let clear = 0;
   for (let i = 0; i < w * h; i++) if (data[i * 4 + 3] < 250) clear++;
   if (clear > w * h * 0.01) {
-    for (let i = 0; i < w * h; i++) coverage[i] = data[i * 4 + 3] / 255;
+    // Near-transparent pixels (the IOS mark's PNG has an alpha-10 backdrop) count as empty, else the bolt traces the image box.
+    for (let i = 0; i < w * h; i++) coverage[i] = data[i * 4 + 3] < 32 ? 0 : data[i * 4 + 3] / 255;
     return coverage;
   }
   let r = 0;

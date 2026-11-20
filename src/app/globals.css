@@ -115,6 +115,9 @@
   .skip:focus-visible { translate: 0 0; }
 
   /* Header: anchored during page transitions */
+  /* Full-viewport MicroSlats layer behind all content; body paints the paper colour on the canvas. */
+  .site-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.4; }
+  :root[data-theme="dark"] .site-bg { opacity: 0.55; }
   .site-header {
     position: sticky; top: 0; z-index: var(--z-sticky-nav);
     background: color-mix(in oklab, var(--color-paper) 92%, transparent);
@@ -262,9 +265,8 @@
     .battery-anim > span { animation: fill linear both; animation-timeline: view(); animation-range: entry 10% entry 60%; }
   }
 }
-/* Hero: words resolve from blur one after another; runs without JS. */
+/* Hero: the line under the headline rises in; runs without JS. */
 @media (prefers-reduced-motion: no-preference) {
-  .blur-word { display: inline-block; animation: blur-in 1s var(--ease-out) both; animation-delay: calc(var(--i) * 110ms + 100ms); }
   .fade-up { animation: reveal 900ms var(--ease-out) both; animation-delay: var(--d, 550ms); }
 }
 @supports (animation-timeline: view()) {
@@ -273,7 +275,6 @@
     .step { animation: step-focus linear both; animation-timeline: view(); animation-range: cover 10% cover 90%; }
   }
 }
-@keyframes blur-in { from { opacity: 0; filter: blur(14px); transform: translateY(0.25em); } }
 @keyframes zoom-in { from { opacity: 0.3; transform: scale(0.86) translateY(40px); } }
 @keyframes step-focus { 0%, 100% { opacity: 0.18; transform: translateY(12px); } 35%, 65% { opacity: 1; transform: none; } }
 @keyframes reveal { from { opacity: 0; transform: translateY(28px); } }
@@ -291,7 +292,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-  .reveal, .battery-anim > span, .blur-word, .fade-up, .zoom-in, .step { animation: none !important; }
+  .reveal, .battery-anim > span, .fade-up, .zoom-in, .step { animation: none !important; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
   .card:hover, .card:hover .card-art > * { transform: none; }
 }
