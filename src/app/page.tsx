@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ViewTransition, type CSSProperties } from "react";
+import { Fragment, ViewTransition, type CSSProperties } from "react";
 import { GRADE_KEYS, grades, policies, PROPOSED_POLICY, uses, type Grade } from "@/config/brand";
 import { LaptopArt } from "@/components/laptop-art";
 import { artName, LaptopCard, specLine } from "@/components/laptop-card";
@@ -13,21 +13,48 @@ export default async function Home() {
 
   return (
     <>
-      <section className="container-page grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16 lg:py-20">
-        <div className="min-w-0">
-          <h1 className="wide text-display">Laptops revisadas, una por una.</h1>
-          <p className="mt-5 max-w-[34ch] text-lead text-ink-2">Cada una trae su grado, su batería medida y precio en quetzales.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/laptops" className="btn btn-primary">Ver laptops</Link>
-            <Link href="/politicas#grados" className="btn btn-secondary">Cómo calificamos</Link>
-          </div>
+      <section className="container-page pt-16 text-center sm:pt-24 lg:pt-28">
+        <h1 className="wide text-hero mx-auto max-w-[14ch]" aria-label="Revisadas. Una por una.">
+          {["Revisadas.", "Una", "por", "una."].map((w, i) => (
+            <Fragment key={i}>
+              <span aria-hidden="true" className="blur-word" style={{ "--i": i } as CSSProperties}>{w}</span>{" "}
+            </Fragment>
+          ))}
+        </h1>
+        <p className="fade-up mx-auto mt-6 max-w-[30ch] text-lead text-ink-2">Laptops reacondicionadas, con su estado real a la vista.</p>
+        <div className="fade-up mt-9 flex flex-wrap justify-center gap-3" style={{ "--d": "700ms" } as CSSProperties}>
+          <Link href="/laptops" className="btn btn-primary">Ver laptops</Link>
+          <Link href="/politicas#grados" className="btn btn-secondary">Cómo calificamos</Link>
         </div>
-        {featured ? <Inspection laptop={featured} /> : <div className="panel p-6 text-ink-2">Todavía no hay laptops publicadas.</div>}
+      </section>
+      <section aria-label="Laptop destacada" className="container-page py-20 sm:py-28">
+        <div className="zoom-in mx-auto max-w-3xl">
+          {featured ? <Inspection laptop={featured} /> : <div className="panel p-6 text-ink-2">Todavía no hay laptops publicadas.</div>}
+        </div>
+      </section>
+
+      <section aria-labelledby="pasos" className="container-page py-20 sm:py-28">
+        <h2 id="pasos" className="text-section reveal text-center">Así de simple.</h2>
+        <ol className="mx-auto mt-14 grid max-w-3xl gap-16 sm:gap-24">
+          {[
+            ["Elegí para qué.", "Estudio, oficina, diseño o juegos."],
+            ["Mirá su estado.", "Grado, batería y qué incluye. Sin sorpresas."],
+            ["Pedila tranquilo.", "Garantía, devoluciones y envío, claros desde el inicio."],
+          ].map(([t, d], i) => (
+            <li key={t} className="step grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-6 sm:gap-x-10">
+              <span className="wide num text-hero text-accent" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3 className="wide text-section">{t}</h3>
+                <p className="mt-2 text-lead text-ink-2">{d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {useRows.length > 0 && (
-        <section aria-labelledby="usos" className="container-page py-12 sm:py-16">
-          <h2 id="usos" className="text-section">¿Para qué la vas a usar?</h2>
+        <section aria-labelledby="usos" className="container-page py-16 sm:py-24">
+          <h2 id="usos" className="text-section reveal">¿Para qué la querés?</h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {useRows.map(({ use, count, from }) => (
               <li key={use} className="reveal">
@@ -46,7 +73,7 @@ export default async function Home() {
       )}
 
       {recent.length > 0 && (
-        <section aria-labelledby="recientes" className="container-page py-12 sm:py-16">
+        <section aria-labelledby="recientes" className="container-page py-16 sm:py-24">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="recientes" className="text-section">Recién llegadas</h2>
             <Link href="/laptops" className="link">Ver todas las laptops</Link>
@@ -60,10 +87,10 @@ export default async function Home() {
       )}
 
       <section aria-labelledby="estado" className="bg-surface rule-top">
-        <div className="container-page grid gap-10 py-14 sm:py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div className="container-page grid gap-10 py-20 sm:py-28 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
-            <h2 id="estado" className="text-section">Sabés qué te llega antes de pedirla.</h2>
-            <p className="mt-4 max-w-prose text-ink-2">Cada laptop trae un grado según su estado por fuera y el porcentaje de batería que le queda. Así comparás sin sorpresas.</p>
+            <h2 id="estado" className="text-section reveal">Sabés qué te llega.</h2>
+            <p className="reveal mt-4 max-w-prose text-lead text-ink-2">Un grado por fuera. La batería medida por dentro.</p>
             <p className="mt-4"><Link href="/politicas#grados" className="link">Leer la escala completa</Link></p>
           </div>
           <ul className="grid gap-4">
@@ -80,14 +107,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="politicas" className="container-page py-14 sm:py-20">
+      <section aria-labelledby="politicas" className="container-page py-20 sm:py-28">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 id="politicas" className="text-section">Garantía, devoluciones y envíos</h2>
           <span className="tag tag-pending">{PROPOSED_POLICY}</span>
         </div>
         <ul className="mt-8 grid gap-4 md:grid-cols-3">
           {[policies.warranty, policies.returns, policies.shipping].map((p) => (
-            <li key={p.title} className="panel grid content-start gap-2 p-5">
+            <li key={p.title} className="reveal panel grid content-start gap-2 p-5">
               <h3 className="text-title">{p.title}</h3>
               <p className="text-ink-2">{p.short}.</p>
             </li>
