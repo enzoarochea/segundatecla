@@ -115,7 +115,7 @@
   .skip:focus-visible { translate: 0 0; }
 
   /* Header: anchored during page transitions */
-  /* Full-viewport MicroSlats layer behind all content; body paints the paper colour on the canvas. */
+  /* Full-viewport Antigravity particle layer behind all content; body paints the paper colour on the canvas. */
   .site-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.4; }
   :root[data-theme="dark"] .site-bg { opacity: 0.55; }
   .site-header {

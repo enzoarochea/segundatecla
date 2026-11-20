@@ -6,7 +6,7 @@ import { bodyFont, displayFont } from "@/config/fonts";
 import { Links, NavLinks } from "@/components/nav-links";
 import { Wordmark } from "@/components/wordmark";
 import { ThemeToggle } from "@/components/theme-toggle";
-import MicroSlats from "@/components/react-bits/MicroSlats";
+import { SiteBackground } from "@/components/site-background";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -51,9 +51,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        {/* Hex, not brand tokens: the WebGL colour parser reads only hex/rgb. Accent and a lighter glint. */}
         <div aria-hidden="true" className="site-bg">
-          <MicroSlats preset="tide" color="#e07a2e" glintColor="#ffd2a6" backgroundColor="transparent" />
+          <SiteBackground />
         </div>
         <a href="#contenido" className="skip">
           Saltar al contenido
