@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, ViewTransition, type CSSProperties } from "react";
 import { GRADE_KEYS, grades, policies, PROPOSED_POLICY, uses, type Grade } from "@/config/brand";
+import { BrandSpark } from "@/components/brand-spark";
 import { LaptopArt } from "@/components/laptop-art";
+import MicroSlats from "@/components/react-bits/MicroSlats";
 import { artName, LaptopCard, specLine } from "@/components/laptop-card";
 import { getFeatured, getRecent, getUseSummary, type LaptopCard as Card } from "@/lib/catalog";
 import { batteryLevel, batteryWord, formatGtq } from "@/lib/format";
@@ -13,7 +15,10 @@ export default async function Home() {
 
   return (
     <>
-      <section className="container-page pt-16 text-center sm:pt-24 lg:pt-28">
+      <section className="container-page relative isolate pt-16 text-center sm:pt-24 lg:pt-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 opacity-25 [mask-image:linear-gradient(to_bottom,transparent,black_30%,black_70%,transparent)]">
+          <MicroSlats preset="tide" color="#e07a2e" glintColor="#ffd2a6" backgroundColor="transparent" />
+        </div>
         <h1 className="wide text-hero mx-auto max-w-[14ch]" aria-label="Revisadas. Una por una.">
           {["Revisadas.", "Una", "por", "una."].map((w, i) => (
             <Fragment key={i}>
@@ -122,6 +127,10 @@ export default async function Home() {
         </ul>
         <p className="mt-6"><Link href="/politicas" className="link">Leer las condiciones propuestas</Link></p>
       </section>
+
+      <div aria-hidden="true" className="mx-auto size-56 pb-16 sm:size-72">
+        <BrandSpark />
+      </div>
     </>
   );
 }
